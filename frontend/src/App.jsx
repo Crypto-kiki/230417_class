@@ -85,7 +85,17 @@ function App() {
       <div className="mt-16 flex flex-col w-1/2">
         {todos &&
           todos.map((v, i) => {
-            return <ToDoCard key={i} todo={v.todo} isDone={v.isDone} />;
+            return (
+              <ToDoCard
+                key={i}
+                todo={v.todo}
+                isDone={v.isDone}
+                id={v.id}
+                userId={user.id}
+                todos={todos}
+                setTodos={setTodos}
+              />
+            );
           })}
       </div>
     </div>
