@@ -16,7 +16,9 @@ const CreateToDo = ({ userId, setTodos, todos }) => {
         }
       );
 
-      setTodos([...todos, response.data.todo]);
+      // 새로 추가되는게 위로가도록!
+      setTodos([response.data.todo, ...todos]);
+
       setTodo("");
     } catch (error) {
       console.error(error);

@@ -51,6 +51,7 @@ router.post("/", async (req, res) => {
 router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
+    const { skip } = req.query;
 
     const user = await client.user.findUnique({
       where: {
@@ -70,6 +71,14 @@ router.get("/:userId", async (req, res) => {
       // skip: 6,
       // // 3개씩 보내는 거임.
       // take: 3,
+
+      // 최신 순서대로받아오기 (asc는 오래된순, desc는 최신순)
+      orderBy: {
+        createdAt: "desc",
+      },
+
+      skip: parseInt(skip),
+      take: 3,
     });
 
     console.log(todos);
